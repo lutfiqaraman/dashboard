@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboard</title>
+
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/sytle.css">
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script>
+
+    </script>
+
+</head>
+
+<body>
+
+    <!-- Navigation Section -->
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container-fluid">
+
+            <!-- Brand and toggle get grouped -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Dashboard</a>
+            </div> <!-- end of the navbar header -->
+
+            <!-- The navbar links -->
+            <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-question fa-fw"></i>&nbsp; Help</a></li>
+                    <li><a href="#"><i class="fa fa-power-off fa-fw"></i>&nbsp; Log out</a></li>
+                </ul>
+            </div> <!-- content of the navbar -->
+
+        </div> <!-- end of container-fluid-->
+    </nav>
+
+    <!-- Dashboard Body -->
+
+    <div class="container-fluid">
+        <!-- The left panel of the dashboard-->
+        <div class="row">
+
+            <!-- The left panel of the dashboard -->
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a class="list-group-item" href="#"><i class="fa fa-user fa-fw"></i>&nbsp; Profile</a>
+
+                    <a class="list-group-item" href="#" onclick="print()">
+                        <i class="fa fa-print fa-fw"></i>&nbsp; Print
+                    </a>
+
+                    <a class="list-group-item" href="#" id="calendar" onclick="openContent()">
+                        <i class="fa fa-calendar fa-fw"></i>&nbsp; Calendar
+                    </a>
+
+                    <div id="calendarForm" class="form-panel">
+                        <form>
+                            <div class="form-group">
+                                <label for="fromDate">From:</label>
+                                <input type="text" class="form-control" id="fromDate" name="formDate">
+                                <label for="toDate">To:</label>
+                                <input type="text" class="form-control" id="toDate" name="toDate">
+                            </div>
+                        </form>
+                    </div>
+
+                    <a class="list-group-item" href="#"><i class="fa fa-cogs fa-fw"></i>&nbsp; Settings</a>
+
+                </div>
+
+            </div> <!-- End of the left panel of the dashboard -->
+
+            <!-- The right panel of the dashboard -->
+            <div class="col-md-8 col-md-offset-1">
+
+                <p class="text-uppercase"><strong><i class="fa fa-bar-chart fa-fw"></i>&nbsp; dashboard</strong></p>
+                <hr>
+
+                <!-- General information header -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="padding">
+                            <p class="text-center text-uppercase"><strong>general information</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General section information - 4 boxes include visits, visitors, pageviews and bounce rate -->
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="boxing">
+                            <div class="pull-left">
+                                <i class="fa fa-eye fa-fw fa-3x"></i>
+                            </div>
+                            <div class="pull-right">
+                                <h4>Visits</h4>
+                                <p class="text-center" id="number">12500</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="boxing">
+                            <div class="pull-left">
+                                <i class="fa fa-user fa-fw fa-3x"></i>
+                            </div>
+                            <div class="pull-right">
+                                <h4>Visitors</h4>
+                                <p class="text-center">23500</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="boxing">
+                            <div class="pull-left">
+                                <i class="fa fa-book fa-fw fa-3x"></i>
+                            </div>
+                            <div class="pull-right">
+                                <h4>Pageviews</h4>
+                                <p class="text-center">75000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="boxing">
+                            <div class="pull-left">
+                                <i class="fa fa-exchange fa-fw fa-3x"></i>
+                            </div>
+                            <div class="pull-right">
+                                <h4>Bounce Rate</h4>
+                                <p class="text-center">56%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- bar chart section-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="padding">
+                            <!-- The panel of channels statistics -->
+                            <div class="panel panel-default" id="panel-stat">
+
+                                <div class="panel-heading text-uppercase">Yearly statistics</div>
+
+                                <div class="panel-body">
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. </p>
+                                </div>
+
+                                <div id="YrStat">
+                                    <!-- The graph will be drawn using d3 library vis javascript file-->
+                                    <script src="js/datapresentation.js"></script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top five countries -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="padding">
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading text-uppercase">top five countries</div>
+
+                                <div class="panel-body">
+                                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                                    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. </p>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Name</th>
+                                            <th>Visitors</th>
+                                            <th>Pageviews</th>
+                                            <th>Bounce Rate</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Country 1</td>
+                                            <td>9850</td>
+                                            <td>20000</td>
+                                            <td>50%</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Country 2</td>
+                                            <td>5000</td>
+                                            <td>25000</td>
+                                            <td>54%</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Country 3</td>
+                                            <td>8750</td>
+                                            <td>30000</td>
+                                            <td>45%</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Country 4</td>
+                                            <td>9500</td>
+                                            <td>34500</td>
+                                            <td>50%</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Country 5</td>
+                                            <td>5600</td>
+                                            <td>27000</td>
+                                            <td>48%</td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- End of the right panel of the dashboard -->
+
+        </div>
+
+
+    </div> <!-- End of the dashboard body -->
+
+    <!-- Footer Section -->
+    <footer class="navbar navbar-fixed-bottom navbar-inverse">
+        <div class="container-fluid">
+            <div class="text-center">
+                <p>&copy; Lutfi Qaraman</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
